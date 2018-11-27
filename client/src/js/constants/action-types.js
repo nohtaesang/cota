@@ -1,0 +1,2 @@
+export const NAV_MOVE_PAGE = 'NAV_MOVE_PAGE';
+export const CONTAINER_MOVE_PAGE = 'CONTAINER_MOVE_PAGE';
