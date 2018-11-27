@@ -1,14 +1,9 @@
 import React from 'react';
-import Nav from './nav/Nav';
-import Container from './container/Container';
+import Write from './section/write/Write';
 
 const App = () => (
     <div id="app">
-        <p>nav</p>
-        <Nav />
-        <hr />
-        <p>container</p>
-        <Container />
+        <Write />
     </div>
 );
 
