@@ -24,12 +24,12 @@ class ConnectedWrite extends Component {
 
     command(e) {
         const success = document.execCommand('bold', false, null);
-        console.log();
     }
 
     render() {
         return (
             <div id="write">
+                <h1 className="container-title">POST</h1>
                 <div id="options">
                     <button type="button" name="bold" onClick={this.command}>
                         {'bold'}
