@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import '../../../../scss/init.scss';
+import '../../../../scss/Write.scss';
 
 const mapDispatchToProps = dispatch => ({});
 const mapStateToProps = state => ({});
