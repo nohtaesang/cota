@@ -1,6 +1,6 @@
-import { NAV_MOVE_PAGE, CONTAINER_MOVE_PAGE } from '../constants/action-types';
 
 const initialState = {
+<<<<<<< HEAD
 	curPage: 'main',
 	userInfo: {
 		name: '노기린',
@@ -57,6 +57,16 @@ const rootReducer = (state = initialState, action) => {
 		default:
 			return state;
 	}
+=======
+};
+
+const rootReducer = (state = initialState, action) => {
+    // console.log(state);
+    switch (action.type) {
+    default:
+        return state;
+    }
+>>>>>>> c48cd96fa990b9ce2df6874d12289b81687834b9
 };
 
 export default rootReducer;
