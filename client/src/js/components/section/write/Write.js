@@ -29,7 +29,7 @@ class ConnectedWrite extends Component {
     render() {
         return (
             <div id="write">
-                <h1 className="container-title">POST</h1>
+                <h1 className="container-title">Post</h1>
                 <div id="options">
                     <button type="button" name="bold" onClick={this.command}>
                         {'bold'}
