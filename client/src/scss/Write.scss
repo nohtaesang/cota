@@ -1,8 +1,9 @@
 @import "utils";
 
-/* PC SCSS */
 #write{
-    background-color: $subBgColor;
+    @include containerWindow();
+
+    .container-title{
+        @include containerTitle();
+    }
 }
-/* MOBILE SCSS */
-@media all and (max-width:960px) {}
