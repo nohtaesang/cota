@@ -6,12 +6,12 @@ import Search from './search/Search';
 import CardList from './cardList/CardList';
 
 const ConnectedMain = () => (
-    <div id="main">
-        <Tab />
-        <Search />
-        <Filter />
-        <CardList />
-    </div>
+	<div id="main">
+		<Tab />
+		<Search />
+		<Filter />
+		<CardList />
+	</div>
 );
 
 const Main = connect()(ConnectedMain);
