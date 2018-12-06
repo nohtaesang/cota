@@ -1,3 +1,37 @@
-$bgColor: #2f3640;
-$subBgColor: #f5f6fa;
-$pointColor: #e1b12c;
+//color
+$cotaGray: #2f3640;
+$cotaWhite: #f5f6fa;
+$cotaYellow: #e1b12c;
+
+//padding value
+$lPadd: 100px;
+$mPadd: 70px;
+$sPadd: 30px;
+
+//margin value
+$lMarg: 100px;
+$mMarg: 70px;
+$sMarg: 30px;
+
+//font size value
+$titleFS: 50px;
+
+//mixin - container
+@mixin containerWindow(){
+    position: fixed;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-flow: column nowrap;
+    // align-items: center;
+    top:$mMarg;
+    padding:$sPadd;
+    background-color:$cotaWhite;
+    @media all and (max-width:960px) {}
+}
+
+@mixin containerTitle(){
+    color:$cotaGray;
+    font-size:$titleFS;
+    @media all and (max-width:960px) {}
+}
