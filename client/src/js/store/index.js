@@ -4,6 +4,12 @@ import penderMiddleware from 'redux-pender/lib/middleware';
 import modules from '../modules/index';
 import DevTools from '../containers/DevTools';
 
-const store = createStore(modules, compose(applyMiddleware(ReduxThunk, penderMiddleware()), DevTools.instrument()));
+const store = createStore(
+	modules,
+	compose(
+		applyMiddleware(ReduxThunk, penderMiddleware()),
+		DevTools.instrument()
+	)
+);
 
 export default store;

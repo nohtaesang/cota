@@ -10,16 +10,37 @@ class ConnectedWrite extends Component {
 		this.textFieldRef = React.createRef();
 	}
 
-	sendImage = async (e) => {
+	componentWillReceiveProps(nextProps) {
+		if (this.props.file !== nextProps.file && nextProps.file !== '') {
+			this.fileUpload();
+		}
+	}
+
+	sendImage = async e => {
 		const { WriteAction } = this.props;
-		const reader = new FileReader();
+		// const file = e.target.files[0];
+		// const reader = new FileReader();
+		// reader.onloadend = () => {
+		// 	WriteAction.sendImage(file);
+		// };
+
+		// reader.readAsDataURL(file);
+
 		const file = e.target.files[0];
-
+		const reader = new FileReader();
 		reader.onloadend = () => {
-			writeAction.sendImage(reader.result);
+			WriteAction.setFile(file);
 		};
-
 		reader.readAsDataURL(file);
+	};
+
+	fileUpload = async => {
+		const { WriteAction } = this.props;
+		const formData = new FormData();
+		formData.append('file', this.props.file);
+		WriteAction.sendImage(formData);
+		console.log(formData);
+		WriteAction.setFile('');
 	};
 
 	insertImage = async () => {
@@ -33,7 +54,9 @@ class ConnectedWrite extends Component {
 	};
 
 	render() {
-		console.log(this.props);
+		const {
+			WriteAction, title, content, author, hashtags
+		} = this.props;
 		return (
 			<div id="write">
 				<div id="options">
@@ -49,7 +72,12 @@ class ConnectedWrite extends Component {
 					</button>
 				</div>
 				<div id="content">
-					<div id="textField" contentEditable="true" onInput={this.handleInput} ref={this.textFieldRef} />
+					<div
+						id="textField"
+						contentEditable="true"
+						onInput={this.handleInput}
+						ref={this.textFieldRef}
+					/>
 				</div>
 				<div id="hashTag">
 					<div>hashtag</div>
@@ -58,7 +86,14 @@ class ConnectedWrite extends Component {
 						{'추가'}
 					</button>
 				</div>
-				<button type="submit" name="confirm" id="confirm">
+				<button
+					type="submit"
+					name="confirm"
+					id="confirm"
+					onClick={() => {
+						WriteAction.sendContent(title, content, author, hashtags);
+					}}
+				>
 					{'confirm'}
 				</button>
 				<button type="submit" name="cancel" id="cancel">
@@ -70,10 +105,15 @@ class ConnectedWrite extends Component {
 }
 
 export default connect(
-	(state) => ({
-		imageUrl: state.write.imageUrl
+	state => ({
+		imageUrl: state.write.imageUrl,
+		file: state.write.file,
+		title: state.write.title,
+		content: state.write.content,
+		author: state.write.author,
+		hashtags: state.write.hashtags
 	}),
-	(dispatch) => ({
+	dispatch => ({
 		WriteAction: bindActionCreators(writeAction, dispatch)
 	})
 )(ConnectedWrite);
