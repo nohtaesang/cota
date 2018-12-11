@@ -1,69 +1,106 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import axios from 'axios';
+
 import * as writeAction from '../../modules/write';
 
 class ConnectedWrite extends Component {
 	constructor() {
 		super();
-
+		this.state = {
+			title: '',
+			content: '',
+			hashtag: '',
+			hashtags: []
+		};
+		this.handleChange = this.handleChange.bind(this);
 		this.textFieldRef = React.createRef();
+		this.addHashtag = this.addHashtag.bind(this);
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (this.props.file !== nextProps.file && nextProps.file !== '') {
-			this.fileUpload();
+	handleChange = (e) => {
+		const { id, value } = e.target;
+		switch (id) {
+			case 'title':
+				this.setState({ title: value });
+				break;
+			case 'textField':
+				this.setState({ content: this.textFieldRef.current.innerHTML });
+				break;
+			case 'hashtag':
+				this.setState({ hashtag: value });
+				break;
+			default:
+				break;
 		}
-	}
+	};
 
-	sendImage = async e => {
-		const { WriteAction } = this.props;
-		// const file = e.target.files[0];
-		// const reader = new FileReader();
-		// reader.onloadend = () => {
-		// 	WriteAction.sendImage(file);
-		// };
-
-		// reader.readAsDataURL(file);
-
+	loadImage = async (e) => {
 		const file = e.target.files[0];
 		const reader = new FileReader();
 		reader.onloadend = () => {
-			WriteAction.setFile(file);
+			this.uploadImage(file);
+			// this.textFieldRef.current.focus();
+			// console.log(reader);
+			// document.execCommand('insertImage', false, reader.result);
 		};
 		reader.readAsDataURL(file);
 	};
 
-	fileUpload = async => {
+	uploadImage = async (file) => {
 		const { WriteAction } = this.props;
 		const formData = new FormData();
-		formData.append('file', this.props.file);
-		WriteAction.sendImage(formData);
-		console.log(formData);
-		WriteAction.setFile('');
-	};
-
-	insertImage = async () => {
-		const { imageUrl } = this.props;
+		formData.append('files', file);
 		try {
-			await this.textFieldRef.current.focus();
-			await document.execCommand('insertImage', false, imageUrl);
+			await WriteAction.uploadImage(formData);
+			await this.insertImage();
 		} catch (e) {
 			console.log('err!');
 		}
 	};
 
+	// 구현중
+	insertImage = async () => {
+		const { WriteAction, imageUrl } = this.props;
+		const url = 'http://ec2-52-78-219-93.ap-northeast-2.compute.amazonaws.com:3001';
+		const file = url + imageUrl;
+		WriteAction.getImage(file);
+
+		console.log(file);
+
+		try {
+			await this.textFieldRef.current.focus();
+			await document.execCommand('insertImage', false, url + imageUrl);
+		} catch (e) {
+			console.log('err!');
+		}
+	};
+
+	// 띄어쓰기, 엔터, 버튼 클릭을 했을 때 해쉬태그 추가
+	addHashtag = () => {
+		const { hashtags, hashtag } = this.state;
+		if (hashtag === null || hashtag === undefined || hashtag === '') {
+			return;
+		}
+
+		this.setState({
+			hashtags: hashtags.concat(hashtag),
+			hashtag: ''
+		});
+	};
+
 	render() {
-		const {
-			WriteAction, title, content, author, hashtags
-		} = this.props;
+		const { WriteAction } = this.props;
+		const { title, content, hashtag, hashtags } = this.state;
+		console.log(this.state);
 		return (
 			<div id="write">
 				<div id="options">
 					<button type="button" name="bold">
 						{'bold'}
 					</button>
-					<input type="file" name="insertImage" onChange={this.sendImage} />
+					<input type="file" name="insertImage" onChange={this.loadImage} />
 					<button type="button" name="redo">
 						{'redo'}
 					</button>
@@ -71,18 +108,21 @@ class ConnectedWrite extends Component {
 						{'undo'}
 					</button>
 				</div>
+				<input id="title" value={title} onChange={this.handleChange} />
 				<div id="content">
 					<div
+						name="content"
 						id="textField"
 						contentEditable="true"
-						onInput={this.handleInput}
+						onInput={this.handleChange}
 						ref={this.textFieldRef}
 					/>
 				</div>
 				<div id="hashTag">
 					<div>hashtag</div>
-					<input id="inputHashTag" />
-					<button type="submit" name="insertHashTag" id="insertHashTag">
+					{hashtags ? hashtags.map((a, i) => <div key={a + i}>{a}</div>) : null}
+					<input id="hashtag" value={hashtag} onChange={this.handleChange} />
+					<button type="submit" name="insertHashTag" id="insertHashTag" onClick={this.addHashtag}>
 						{'추가'}
 					</button>
 				</div>
@@ -91,7 +131,7 @@ class ConnectedWrite extends Component {
 					name="confirm"
 					id="confirm"
 					onClick={() => {
-						WriteAction.sendContent(title, content, author, hashtags);
+						WriteAction.saveContent(title, content, '노태상', hashtags);
 					}}
 				>
 					{'confirm'}
@@ -105,7 +145,7 @@ class ConnectedWrite extends Component {
 }
 
 export default connect(
-	state => ({
+	(state) => ({
 		imageUrl: state.write.imageUrl,
 		file: state.write.file,
 		title: state.write.title,
@@ -113,7 +153,7 @@ export default connect(
 		author: state.write.author,
 		hashtags: state.write.hashtags
 	}),
-	dispatch => ({
+	(dispatch) => ({
 		WriteAction: bindActionCreators(writeAction, dispatch)
 	})
 )(ConnectedWrite);

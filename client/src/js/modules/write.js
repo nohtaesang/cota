@@ -2,73 +2,52 @@ import { createAction, handleActions } from 'redux-actions';
 import { pender } from 'redux-pender';
 import axios from 'axios';
 
-const SEND_CONTENT = 'SEND_CONTENT';
-const SEND_IMAGE = 'SEND_IMAGE';
-const SET_FILE = 'SET_FILE';
+const SAVE_CONTENT = 'SAVE_CONTENT';
+const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
 
-export const sendContent = (title, content, author, hashtags) => ({
-	type: SEND_CONTENT,
-	payload: axios.post(
-		'http://ec2-52-78-219-93.ap-northeast-2.compute.amazonaws.com:8080/save',
-		{
-			title,
-			content,
-			author,
-			hashtags
-		}
-	)
+export const saveContent = (title, content, author, hashtags) => ({
+	type: SAVE_CONTENT,
+	payload: axios.post('http://ec2-52-78-219-93.ap-northeast-2.compute.amazonaws.com:3001/save', {
+		title,
+		content,
+		author,
+		hashtags
+	})
 });
 
-export const sendImage = files => ({
-	type: SEND_IMAGE,
-	payload: axios.post({
-		url:
-			'http://ec2-52-78-219-93.ap-northeast-2.compute.amazonaws.com:8080/insertImage',
-		files: {
-			files
-		},
+export const uploadImage = (formData) => ({
+	type: UPLOAD_IMAGE,
+	payload: axios.post('http://ec2-52-78-219-93.ap-northeast-2.compute.amazonaws.com:3001/insertImage', formData, {
 		headers: {
 			'Content-Type': 'multipart/form-data'
 		}
 	})
 });
 
-export const setFile = file => ({
-	type: SET_FILE,
-	payload: file
-});
-
 export const initialState = {
-	title: 'a',
-	content: 'b',
-	author: 'c',
-	hashtags: ['d', 'e'],
-	imageUrl: '',
-	file: ''
+	title: '',
+	content: '',
+	author: '',
+	hashtags: [],
+	imageUrl: ''
 };
 
 export default handleActions(
 	{
-		[SET_FILE]: (state, action) => {
-			const newFile = action.payload;
-			return {
-				...state,
-				file: newFile
-			};
-		},
 		...pender({
-			type: SEND_IMAGE,
-			onFailure: () => {
-				console.log('z1');
-			},
-			onPending: () => {
-				console.log('z2');
-			},
+			type: SAVE_CONTENT,
+			onSuccess: (state, action) => {}
+		}),
+
+		...pender({
+			type: UPLOAD_IMAGE,
+			onFailure: () => {},
+			onPending: () => {},
 			onSuccess: (state, action) => {
-				console.log(action);
+				console.log(action.payload.data);
 				// return {
 				// 	...state,
-				// 	imageUrl: action.imageUrl
+				// 	imageUrl: action.payload.data
 				// };
 			}
 		})

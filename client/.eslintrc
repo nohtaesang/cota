@@ -29,7 +29,10 @@
 		"react/jsx-indent-props": 0,
 		"react/prop-types": 0,
 		"no-underscore-dangle": 0,
-		"max-len": 0
+		"max-len": 0,
+		"object-curly-newline":0,
+		"array-bracket-spacing":0,
+		"react/no-array-index-key":0
 	},
 	"env": {
 		"browser": true,
