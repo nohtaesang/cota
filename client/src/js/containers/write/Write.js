@@ -96,6 +96,7 @@ class ConnectedWrite extends Component {
 	render() {
 		const { WriteAction } = this.props;
 		const { title, content, hashtag, hashtags } = this.state;
+		console.log(this.state);
 		return (
 			<div id="write">
 				<div id="content-write">
@@ -131,7 +132,13 @@ class ConnectedWrite extends Component {
 					</div>
 					<div id="submits">
 						<div id="hashtags">
-							{hashtags ? hashtags.map((a, i) => <p className="hashtag" key={a + i}>{a}</p>) : null}
+							{hashtags ? (
+								hashtags.map((a, i) => (
+									<p className="hashtag" key={a + i}>
+										{a}
+									</p>
+								))
+							) : null}
 						</div>
 						<input id="input-hashtag" placeholder="해시 태그 입력" value={hashtag} onChange={this.handleChange} />
 						<button
