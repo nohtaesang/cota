@@ -1,1 +1,0 @@
-# springboot - git - aws 연동 [![Build Status](https://travis-ci.com/seonghun127/springboot_webservice.svg?branch=master)](https://travis-ci.com/seonghun127/springboot_webservice)
