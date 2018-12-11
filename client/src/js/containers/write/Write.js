@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import '../../../scss/init.scss';
+import '../../../scss/Write.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as writeAction from '../../modules/write';
 
@@ -28,7 +31,7 @@ class ConnectedWrite extends Component {
 			case 'textField':
 				this.setState({ content: this.textFieldRef.current.innerHTML });
 				break;
-			case 'hashtag':
+			case 'input-hashtag':
 				this.setState({ hashtag: value });
 				break;
 			default:
@@ -95,49 +98,54 @@ class ConnectedWrite extends Component {
 		const { title, content, hashtag, hashtags } = this.state;
 		return (
 			<div id="write">
-				<div id="options">
-					<button type="button" name="bold">
-						{'bold'}
-					</button>
-					<input type="file" name="insertImage" onChange={this.loadImage} />
-					<button type="button" name="redo">
-						{'redo'}
-					</button>
-					<button type="button" name="undo">
-						{'undo'}
-					</button>
+				<div id="content-write">
+					<div id="tools">
+						<h1 className="container-title">Post</h1>
+						<div id="options">
+							<button type="button" name="bold" onClick={this.command}>
+								<FontAwesomeIcon icon="bold" color="#fff" />
+							</button>
+							<button type="button" name="insertImage" onClick={this.command}>
+								<FontAwesomeIcon icon="image" color="#fff" />
+							</button>
+							<button type="button" name="undo" onClick={this.command}>
+								<FontAwesomeIcon icon="undo" color="#fff" />
+							</button>
+							<button type="button" name="redo" onClick={this.command}>
+								<FontAwesomeIcon icon="redo" color="#fff" />
+							</button>
+						</div>
+						<button type="submit" name="cancel" id="cancel">
+							<FontAwesomeIcon icon="times" color="#2f3640" />
+						</button>
+					</div>
+					<input id="title" value={title} onChange={this.handleChange} />
+					<div id="content">
+						<div
+							name="content"
+							id="textField"
+							contentEditable="true"
+							onInput={this.handleChange}
+							ref={this.textFieldRef}
+						/>
+					</div>
+					<div id="submits">
+						<div id="hashtags">
+							{hashtags ? hashtags.map((a, i) => <p className="hashtag" key={a + i}>{a}</p>) : null}
+						</div>
+						<input id="input-hashtag" placeholder="해시 태그 입력" value={hashtag} onChange={this.handleChange} />
+						<button
+							type="submit"
+							name="confirm"
+							id="submit"
+							onClick={() => {
+								WriteAction.saveContent(title, content, '노태상', hashtags);
+							}}
+						>
+							{'Share'}
+						</button>
+					</div>
 				</div>
-				<input id="title" value={title} onChange={this.handleChange} />
-				<div id="content">
-					<div
-						name="content"
-						id="textField"
-						contentEditable="true"
-						onInput={this.handleChange}
-						ref={this.textFieldRef}
-					/>
-				</div>
-				<div id="hashTag">
-					<div>hashtag</div>
-					{hashtags ? hashtags.map((a, i) => <div key={a + i}>{a}</div>) : null}
-					<input id="hashtag" value={hashtag} onChange={this.handleChange} />
-					<button type="submit" name="insertHashTag" id="insertHashTag" onClick={this.addHashtag}>
-						{'추가'}
-					</button>
-				</div>
-				<button
-					type="submit"
-					name="confirm"
-					id="confirm"
-					onClick={() => {
-						WriteAction.saveContent(title, content, '노태상', hashtags);
-					}}
-				>
-					{'confirm'}
-				</button>
-				<button type="submit" name="cancel" id="cancel">
-					{'cancel'}
-				</button>
 			</div>
 		);
 	}
