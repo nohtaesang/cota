@@ -2,17 +2,26 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import Tab from './Tab';
+import CardList from './CardList';
+import * as cardlistAction from '../../modules/cardList';
 
-import * as cardlistAction from '../../modules/cardlist';
+// TODO: 1. TAB
+// 2. cardlist
 
-class ConnectedWrite extends Component {
+class ConnectedIndex extends Component {
 	constructor() {
 		super();
 	}
 
 	render() {
 		const { CardlistAction } = this.props;
-		return <div id="cardlist" />;
+		return (
+			<div id="index-container">
+				<Tab />
+				<CardList />
+			</div>
+		);
 	}
 }
 
@@ -21,4 +30,4 @@ export default connect(
 	(dispatch) => ({
 		CardlistAction: bindActionCreators(cardlistAction, dispatch)
 	})
-)(ConnectedWrite);
+)(ConnectedIndex);

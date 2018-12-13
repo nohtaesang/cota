@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as writeAction from '../../modules/write';
 
+// TODO: imageList에 사용자가 업로드한 이미지를 추가하고, 하단에 이미지를 작게 보여주고, 썸네일을 선택할 수 있게 하기
+
 class ConnectedWrite extends Component {
 	constructor() {
 		super();
@@ -15,7 +17,8 @@ class ConnectedWrite extends Component {
 			title: '',
 			content: '',
 			hashtag: '',
-			hashtags: []
+			hashtags: [],
+			imageList: []
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.textFieldRef = React.createRef();
@@ -99,6 +102,8 @@ class ConnectedWrite extends Component {
 		try {
 			await this.textFieldRef.current.focus();
 			await document.execCommand('insertImage', false, url + imageLoadUrl);
+			// FIXME: 이미지를 imageList에 추가해야함
+			// await this.setState
 		} catch (e) {
 			console.log('err!');
 		}
