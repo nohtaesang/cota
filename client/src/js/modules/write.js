@@ -17,7 +17,7 @@ export const saveContent = (title, content, author, hashtags) => ({
 
 export const uploadImage = (formData) => ({
 	type: UPLOAD_IMAGE,
-	payload: axios.post('http://ec2-52-78-219-93.ap-northeast-2.compute.amazonaws.com:3001/insertImage', formData, {
+	payload: axios.post('http://ec2-52-78-219-93.ap-northeast-2.compute.amazonaws.com:3001/upload', formData, {
 		headers: {
 			'Content-Type': 'multipart/form-data'
 		}
@@ -29,7 +29,7 @@ export const initialState = {
 	content: '',
 	author: '',
 	hashtags: [],
-	imageUrl: ''
+	imageLoadUrl: ''
 };
 
 export default handleActions(
@@ -44,11 +44,11 @@ export default handleActions(
 			onFailure: () => {},
 			onPending: () => {},
 			onSuccess: (state, action) => {
-				console.log(action.payload.data);
-				// return {
-				// 	...state,
-				// 	imageUrl: action.payload.data
-				// };
+				const routeApi = '/displayFile?fileName=';
+				return {
+					...state,
+					imageLoadUrl: routeApi + action.payload.data
+				};
 			}
 		})
 	},

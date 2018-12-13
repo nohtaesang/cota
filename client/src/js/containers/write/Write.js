@@ -19,8 +19,32 @@ class ConnectedWrite extends Component {
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.textFieldRef = React.createRef();
+		this.fileInputRef = React.createRef();
 		this.addHashtag = this.addHashtag.bind(this);
 	}
+
+	eventOccur = (evEle, evType) => {
+		if (evEle.fireEvent) {
+			evEle.fireEvent(evType);
+			console.log(evType);
+		} else {
+			const mouseEvent = document.createEvent('MouseEvents');
+			/* API문서 initEvent(type,bubbles,cancelable) */
+			mouseEvent.initEvent(evType, true, false);
+			const transCheck = evEle.dispatchEvent(mouseEvent);
+			if (!transCheck) {
+				console.log('클릭 이벤트 발생 실패!');
+			}
+		}
+	};
+
+	check = () => {
+		this.eventOccur(this.fileInputRef.current, 'click');
+	};
+
+	optionCommand = (command) => {
+		document.execCommand(command);
+	};
 
 	handleChange = (e) => {
 		const { id, value } = e.target;
@@ -39,6 +63,7 @@ class ConnectedWrite extends Component {
 		}
 	};
 
+	// 1. 사용자가 이미지를 로컬에서 불러온다.
 	loadImage = async (e) => {
 		const file = e.target.files[0];
 		const reader = new FileReader();
@@ -51,10 +76,11 @@ class ConnectedWrite extends Component {
 		reader.readAsDataURL(file);
 	};
 
+	// 2. 사용자가 불러온 이미지를 서버에 업로드 한다.
 	uploadImage = async (file) => {
 		const { WriteAction } = this.props;
 		const formData = new FormData();
-		formData.append('files', file);
+		formData.append('file', file);
 		try {
 			await WriteAction.uploadImage(formData);
 			await this.insertImage();
@@ -63,24 +89,22 @@ class ConnectedWrite extends Component {
 		}
 	};
 
-	// 구현중
+	// 3. 서버에 올라간 이미지를 요청하여 받아와 사용자의 content에 삽입한다.
 	insertImage = async () => {
-		const { WriteAction, imageUrl } = this.props;
+		const { WriteAction, imageLoadUrl } = this.props;
 		const url = 'http://ec2-52-78-219-93.ap-northeast-2.compute.amazonaws.com:3001';
-		const file = url + imageUrl;
-		WriteAction.getImage(file);
-
+		const file = url + imageLoadUrl;
 		console.log(file);
 
 		try {
 			await this.textFieldRef.current.focus();
-			await document.execCommand('insertImage', false, url + imageUrl);
+			await document.execCommand('insertImage', false, url + imageLoadUrl);
 		} catch (e) {
 			console.log('err!');
 		}
 	};
 
-	// 띄어쓰기, 엔터, 버튼 클릭을 했을 때 해쉬태그 추가
+	// 띄어쓰기, 엔터, 버튼 클릭을 했을 때 해쉬태그 추가 해줘야함
 	addHashtag = () => {
 		const { hashtags, hashtag } = this.state;
 		if (hashtag === null || hashtag === undefined || hashtag === '') {
@@ -103,16 +127,17 @@ class ConnectedWrite extends Component {
 					<div id="tools">
 						<h1 className="container-title">Post</h1>
 						<div id="options">
-							<button type="button" name="bold" onClick={this.command}>
+							<button type="button" name="bold" onClick={() => this.optionCommand('bold')}>
 								<FontAwesomeIcon icon="bold" color="#fff" />
 							</button>
-							<button type="button" name="insertImage" onClick={this.command}>
+							<input type="file" id="insertImage" ref={this.fileInputRef} onChange={this.loadImage} />
+							<button type="button" name="insertImage" onClick={this.check}>
 								<FontAwesomeIcon icon="image" color="#fff" />
 							</button>
-							<button type="button" name="undo" onClick={this.command}>
+							<button type="button" name="undo" onClick={() => this.optionCommand('undo')}>
 								<FontAwesomeIcon icon="undo" color="#fff" />
 							</button>
-							<button type="button" name="redo" onClick={this.command}>
+							<button type="button" name="redo" onClick={() => this.optionCommand('redo')}>
 								<FontAwesomeIcon icon="redo" color="#fff" />
 							</button>
 						</div>
@@ -120,8 +145,8 @@ class ConnectedWrite extends Component {
 							<FontAwesomeIcon icon="times" color="#2f3640" />
 						</button>
 					</div>
-					<input id="title" value={title} onChange={this.handleChange} />
 					<div id="content">
+						<input id="title" value={title} onChange={this.handleChange} />
 						<div
 							name="content"
 							id="textField"
@@ -160,7 +185,7 @@ class ConnectedWrite extends Component {
 
 export default connect(
 	(state) => ({
-		imageUrl: state.write.imageUrl,
+		imageLoadUrl: state.write.imageLoadUrl,
 		file: state.write.file,
 		title: state.write.title,
 		content: state.write.content,
