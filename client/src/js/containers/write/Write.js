@@ -194,7 +194,7 @@ export default connect(
 		file: state.write.file,
 		title: state.write.title,
 		content: state.write.content,
-		author: state.write.author,
+		uno: state.write.uno,
 		hashtags: state.write.hashtags
 	}),
 	(dispatch) => ({

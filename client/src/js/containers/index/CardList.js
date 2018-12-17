@@ -4,29 +4,40 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Card from './Card';
 import CardDetail from './CardDetail';
-import * as cardlistAction from '../../modules/cardlist';
+import * as cardListAction from '../../modules/cardList';
 
 class ConnectedCardList extends Component {
 	constructor() {
 		super();
 	}
 
+	componentWillMount() {
+		const { CardListAction, numberOfCard } = this.props;
+		CardListAction.getCardList('recent', numberOfCard);
+	}
+
 	render() {
-		const { CardlistAction } = this.props;
+		const { CardListAction, cardList, numberOfCard, loading, cardDetail, isCardDetailActive } = this.props;
+
 		return (
 			<div id="card-list">
-				{/* FIXME: Card */}
-				<Card />
-				{/* FIXME: CardDetail */}
-				<CardDetail />
+				{cardList.length ? cardList.map((info, i) => <Card info={info} key={i} />) : null}
+				{loading ? <p>loading...</p> : null}
+				{isCardDetailActive ? <CardDetail /> : null}
 			</div>
 		);
 	}
 }
 
 export default connect(
-	(state) => ({}),
+	(state) => ({
+		cardList: state.cardList.cardList,
+		numberOfCard: state.cardList.numberOfCard,
+		cardDetail: state.cardList.cardDetail,
+		isCardDetailActive: state.cardList.isCardDetailActive,
+		loading: state.pender.pending.GET_CARD_LIST
+	}),
 	(dispatch) => ({
-		CardlistAction: bindActionCreators(cardlistAction, dispatch)
+		CardListAction: bindActionCreators(cardListAction, dispatch)
 	})
 )(ConnectedCardList);

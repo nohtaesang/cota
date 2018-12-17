@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import * as cardlistAction from '../../modules/cardlist';
+import * as cardlistAction from '../../modules/cardList';
 
 // TODO: 버튼을 누르면, 카드리스트의 카테고리가 변경되도록
 

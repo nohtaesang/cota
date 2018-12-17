@@ -11,7 +11,7 @@ const App = () => (
 	<div id="app">
 		{/* <Write /> */}
 		<Index />
-		<DevTools />
+		{/* <DevTools /> */}
 	</div>
 );
 
