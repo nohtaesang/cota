@@ -36,15 +36,24 @@ export default handleActions(
 		}),
 		...pender({
 			type: GET_NAVER_LOGIN_URL,
-			onSuccess: (state, action) => ({ ...initialState, naverLoginUrl: action.payload.data.url })
+			onSuccess: (state, action) => {
+				console.log(action);
+				return { ...initialState, naverLoginUrl: action.payload.data.url };
+			}
 		}),
 		...pender({
 			type: CLICK_NAVER_LOGIN,
+			onFailure: (state, err) => {
+				console.log(err);
+				return state;
+			},
 			onPending: (state, action) => {
-				console.log('z');
+				console.log(typeof action);
+				return state;
 			},
 			onSuccess: (state, action) => {
-				console.log(action);
+				console.log(state);
+				return state;
 			}
 		})
 	},

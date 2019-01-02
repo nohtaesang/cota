@@ -18,7 +18,7 @@ class ConnectedNav extends Component {
 
 	render() {
 		const { isLogin, UserAction, curPage, naverLoginUrl } = this.props;
-		console.log(naverLoginUrl);
+		console.log('naverLoginUrl: ', naverLoginUrl);
 		return (
 			<div id="nav">
 				<button id="logo" type="button" name="cardList" onClick={() => UserAction.setCurPage('cardList')}>
@@ -34,6 +34,7 @@ class ConnectedNav extends Component {
 							>
 								{'Login'}
 							</button>
+							<a href={naverLoginUrl}>login a tag</a>
 						</div>
 					</div>
 				) : (
