@@ -1,94 +1,93 @@
-//color variable
-$cotaGray: #2f3640;
-$cotaWhite: #f5f6fa;
-$cotaYellow: #e1b12c;
+// //color variable
+// $cotaGray: #2f3640;
+// $cotaWhite: #f5f6fa;
+// $cotaYellow: #e1b12c;
 
-//padding variable
-$lPadd: 100px;
-$mPadd: 70px;
-$sPadd: 30px;
-$ssPadd: 15px;
+// //padding variable
+// $lPadd: 100px;
+// $mPadd: 70px;
+// $sPadd: 30px;
+// $ssPadd: 15px;
 
-//margin variable
-$lMarg: 100px;
-$mMarg: 70px;
-$sMarg: 30px;
-$ssMarg: 15px;
+// //margin variable
+// $lMarg: 100px;
+// $mMarg: 70px;
+// $sMarg: 30px;
+// $ssMarg: 15px;
 
-//font size variable
-$titleFS: 50px;
-$mPcFS:15px;
-$sPcFS:13px;
-$mMobileFS:0px;
-$sMobileFS:0px;
+// //font size variable
+// $titleFS: 50px;
+// $mPcFS:15px;
+// $sPcFS:13px;
+// $mMobileFS:0px;
+// $sMobileFS:0px;
 
-//width size variable
+// //width size variable
 
+// //mixin - container
+// @mixin containerWindow(){
+//     position: fixed;
+//     width:100%;
+//     height: -webkit-calc(100% - 70px);
+//     height:    -moz-calc(100% - 70px);
+//     height:         calc(100% - 70px);
+//     display:flex;
+//     flex-flow: column nowrap;
+//     overflow-y:scroll;
+//     // align-items: center;
+//     top:$mMarg;
+//     padding:$sPadd;
+//     padding-top:0;
+//     padding-bottom:100px;
+//     background-color:$cotaWhite;
+//     @media all and (max-width:960px) {}
+// }
 
-//mixin - container
-@mixin containerWindow(){
-    position: fixed;
-    width:100%;
-    height: -webkit-calc(100% - 70px);
-    height:    -moz-calc(100% - 70px);
-    height:         calc(100% - 70px);
-    display:flex;
-    flex-flow: column nowrap;
-    overflow-y:scroll;
-    // align-items: center;
-    top:$mMarg;
-    padding:$sPadd;
-    padding-top:0;
-    padding-bottom:100px;
-    background-color:$cotaWhite;
-    @media all and (max-width:960px) {}
-}
+// @mixin tools(){
+//     background-color:$cotaWhite;
+//     position:fixed;
+//     width:100%;
+// }
 
-@mixin tools(){
-    background-color:$cotaWhite;
-    position:fixed;
-    width:100%;
-}
+// @mixin containerTitle(){
+//     padding-top:$ssPadd;
+//     color:$cotaGray;
+//     font-size:$titleFS;
+//     @media all and (max-width:960px) {}
+// }
 
-@mixin containerTitle(){
-    padding-top:$ssPadd;
-    color:$cotaGray;
-    font-size:$titleFS;
-    @media all and (max-width:960px) {}
-}
+// //mixin - input
+// @mixin input($width){
+//     width:$width;
+//     min-width:500px;
+//     min-height:600px;
+//     margin-top:220px;
+//     margin-left:5px;
+//     padding:$mPadd $lPadd;
+//     box-shadow:0 0 3px 2px #ddd;
+//     background: white;
+// }
 
-//mixin - input
-@mixin input($width){
-    width:$width;
-    min-width:500px;
-    min-height:600px;
-    margin-top:220px;
-    margin-left:5px;
-    padding:$mPadd $lPadd;
-    box-shadow:0 0 3px 2px #ddd;
-    background: white;
-}
+// //mixin - cancel
+// @mixin cancel($right, $top){
+//     position: absolute;
+//     transform:translate(-50%, -50%);
+//     right:$right;
+//     top:$top;
+//     font-size:25px;
+// }
 
-//mixin - cancel
-@mixin cancel($right, $top){
-    position: absolute;
-    transform:translate(-50%, -50%);
-    right:$right;
-    top:$top;
-    font-size:25px;
-}
+// //mixin - button
+// @mixin button($width, $height, $color){
+//     width:$width;
+//     height:$height;
+//     border:none;
+//     background-color:$color;
+//     cursor:pointer;
+//     outline:none;
+// }
 
-//mixin - button
-@mixin button($width, $height, $color){
-    width:$width;
-    height:$height;
-    border:none;
-    background-color:$color;
-    cursor:pointer;
-    outline:none;
-}
+// //mixin - hashtag
+// @mixin hasetag(){
 
-//mixin - hashtag
-@mixin hasetag(){
-
-}
+// }

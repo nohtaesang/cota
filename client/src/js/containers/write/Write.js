@@ -29,7 +29,6 @@ class ConnectedWrite extends Component {
 	eventOccur = (evEle, evType) => {
 		if (evEle.fireEvent) {
 			evEle.fireEvent(evType);
-			console.log(evType);
 		} else {
 			const mouseEvent = document.createEvent('MouseEvents');
 			/* API문서 initEvent(type,bubbles,cancelable) */
@@ -97,7 +96,6 @@ class ConnectedWrite extends Component {
 		const { WriteAction, imageLoadUrl } = this.props;
 		const url = 'http://ec2-52-78-219-93.ap-northeast-2.compute.amazonaws.com:3001';
 		const file = url + imageLoadUrl;
-		console.log(file);
 
 		try {
 			await this.textFieldRef.current.focus();
@@ -125,7 +123,6 @@ class ConnectedWrite extends Component {
 	render() {
 		const { WriteAction } = this.props;
 		const { title, content, hashtag, hashtags } = this.state;
-		console.log(this.state);
 		return (
 			<div id="write">
 				<div id="content-write">

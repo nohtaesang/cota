@@ -1,0 +1,28 @@
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import * as commonAction from '../../modules/common';
+
+// TODO: imageList에 사용자가 업로드한 이미지를 추가하고, 하단에 이미지를 작게 보여주고, 썸네일을 선택할 수 있게 하기
+
+class ConnectedLoginForm extends Component {
+	constructor() {
+		super();
+	}
+
+	render() {
+		return (
+        <div id="nav_id_login" >
+            
+        </div>)
+        ;
+	}
+}
+
+export default connect(
+	(state) => ({}),
+	(dispatch) => ({
+		CommonAction: bindActionCreators(commonAction, dispatch)
+	})
+)(ConnectedLoginForm);
