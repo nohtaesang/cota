@@ -1,15 +1,15 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBold, faImage, faUndo, faRedo, faTimes } from '@fortawesome/free-solid-svg-icons';
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { faBold, faImage, faUndo, faRedo, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Nav from './nav/Nav';
 import Write from './write/Write';
 import DevTools from './DevTools';
 import CardList from './cardList/CardList';
 import './app.css';
 
-library.add(faBold, faImage, faUndo, faRedo, faTimes);
+// library.add(faBold, faImage, faUndo, faRedo, faTimes);
 
 class App extends React.Component {
 	constructor() {

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import '../../../scss/init.scss';
-import '../../../scss/Write.scss';
+// import '../../../scss/init.scss';
+// import '../../../scss/Write.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as writeAction from '../../modules/write';
