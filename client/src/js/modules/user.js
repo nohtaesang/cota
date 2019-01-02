@@ -18,7 +18,7 @@ export const setCurPage = (newPage) => ({
 
 export const clickNaverLogin = (url) => ({
 	type: CLICK_NAVER_LOGIN,
-	payload: axios.post(url)
+	payload: axios.get(url)
 });
 
 export const initialState = {
