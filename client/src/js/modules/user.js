@@ -40,6 +40,9 @@ export default handleActions(
 		}),
 		...pender({
 			type: CLICK_NAVER_LOGIN,
+			onPending: (state, action) => {
+				console.log('z');
+			},
 			onSuccess: (state, action) => {
 				console.log(action);
 			}
