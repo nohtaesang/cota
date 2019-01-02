@@ -27,10 +27,12 @@ class ConnectedNav extends Component {
 				{!isLogin ? (
 					<div id="beforeLogin">
 						<div id="loginForm">
-							<input id="id" type="text" />
-							<input id="pw" type="password" />
-							<button id="loginBtn" type="button">
-								<a href={naverLoginUrl}> login</a>
+							<button
+								id="loginBtn"
+								type="button"
+								onClick={() => UserAction.clickNaverLogin(naverLoginUrl)}
+							>
+								{'Login'}
 							</button>
 						</div>
 					</div>

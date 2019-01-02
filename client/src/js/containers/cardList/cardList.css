@@ -54,11 +54,12 @@ $cotaYellow: #e1b12c;
 #card-list #cards {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
-	align-content: center;
+	/* justify-content: flex-start;
+	align-content: center; */
 }
 
 #card-list .card {
+	display: block;
 	box-sizing: border-box;
 	margin: 5px;
 	width: 210px;
