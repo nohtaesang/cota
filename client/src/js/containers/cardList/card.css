@@ -1,0 +1,54 @@
+.card {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	width: 200px;
+	border-radius: 6px 6px 3px 3px;
+	box-shadow: 0 1px 2px rgba(25, 25, 25, 0.2);
+	margin: 10px;
+	cursor: pointer;
+}
+.card:hover {
+	opacity: 0.8;
+	/* border: solid 1px #ff6b6b; */
+	/* margin: 8px; */
+	/* padding: 5px; */
+	/* width: 201px; */
+}
+
+.card .thumbnail {
+	box-sizing: border-box;
+	width: 200px;
+	height: 160px;
+	border-radius: 6px 6px 0 0;
+}
+
+.card .title {
+	font-weight: bold;
+	padding: 10px 0px 5px 10px;
+}
+
+.card .writer-and-date {
+	display: flex;
+	flex-direction: row;
+	/* justify-content: center; */
+	align-items: center;
+	padding: 5px 10px 10px 10px;
+}
+
+.card .writer-and-date .writer {
+	/* margin-left: auto; */
+}
+
+.card .writer-and-date .date {
+	margin-left: auto;
+	font-size: 10px;
+}
+
+.card .comment {
+	display: flex;
+	justify-content: space-around;
+
+	border-top: solid 1px #eee;
+	padding: 5px;
+}

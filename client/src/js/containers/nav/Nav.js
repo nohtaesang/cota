@@ -3,52 +3,43 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as userAction from '../../modules/user';
-import './nav.css';
-// TODO: imageList에 사용자가 업로드한 이미지를 추가하고, 하단에 이미지를 작게 보여주고, 썸네일을 선택할 수 있게 하기
+import * as cardListAction from '../../modules/cardList';
+import BeforeLogin from './BeforeLogin';
+import AfterLogin from './AfterLogin';
 
-class ConnectedNav extends Component {
+import './nav.css';
+
+class Nav extends Component {
 	constructor() {
 		super();
 	}
 
 	componentDidMount() {
+		// 임시 로그인 체크
 		const { UserAction } = this.props;
-		UserAction.getNaverLoginUrl();
+
+		localStorage.setItem('token', 'nohtaesang'); // 로그인
+		// localStorage.clear();
+
+		if (localStorage.getItem('token') !== null) {
+			UserAction.setUserEmail('seonghun127@gmail.com');
+		}
 	}
 
+	onClickLogoBtn = () => {
+		const { UserAction, CardListAction } = this.props;
+		UserAction.setCurPage('cardList');
+		CardListAction.setCardDetail(null);
+	};
+
 	render() {
-		const { isLogin, UserAction, curPage, naverLoginUrl } = this.props;
-		console.log('naverLoginUrl: ', naverLoginUrl);
+		const { userEmail } = this.props;
 		return (
 			<div id="nav">
-				<button id="logo" type="button" name="cardList" onClick={() => UserAction.setCurPage('cardList')}>
+				<button type="button" id="logoBtn" onClick={this.onClickLogoBtn}>
 					{'COTA'}
 				</button>
-				{!isLogin ? (
-					<div id="beforeLogin">
-						<div id="loginForm">
-							<button
-								id="loginBtn"
-								type="button"
-								onClick={() => UserAction.clickNaverLogin(naverLoginUrl)}
-							>
-								{'Login'}
-							</button>
-							<a href={naverLoginUrl}>login a tag</a>
-						</div>
-					</div>
-				) : (
-					<div id="afterLogin">
-						<button type="button" onClick={() => UserAction.setCurPage('write')}>
-							{'write'}
-						</button>
-						<button type="button" onClick={() => UserAction.setCurPage('myPage')}>
-							{'my page'}
-						</button>
-
-						<button type="button">logout</button>
-					</div>
-				)}
+				{userEmail === null ? <BeforeLogin /> : <AfterLogin />}
 			</div>
 		);
 	}
@@ -56,11 +47,10 @@ class ConnectedNav extends Component {
 
 export default connect(
 	(state) => ({
-		isLogin: state.user.isLogin,
-		curPage: state.user.curPage,
-		naverLoginUrl: state.user.naverLoginUrl
+		userEmail: state.user.userEmail
 	}),
 	(dispatch) => ({
-		UserAction: bindActionCreators(userAction, dispatch)
+		UserAction: bindActionCreators(userAction, dispatch),
+		CardListAction: bindActionCreators(cardListAction, dispatch)
 	})
-)(ConnectedNav);
+)(Nav);

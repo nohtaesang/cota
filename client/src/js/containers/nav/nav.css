@@ -1,84 +1,8 @@
-/* 
-#FFC000
-$cotaGray: #2f3640;
-$cotaWhite: #f5f6fa;
-$cotaYellow: #e1b12c;
-
-*/
-
 #nav {
-	position: sticky;
-	top: 0;
+	display: flex;
 	width: 100%;
-	display: flex;
-	height: 125px;
-	/* justify-content: space-between; */
-	background: #f5f6fa;
-}
-
-#nav #logo {
-	border: none;
-	/* width: 75px; */
-	font-size: 64px;
-	background: none;
-	color: #2f3640;
-	margin-right: 100px;
-}
-
-#nav #logo:hover {
-	font-weight: bold;
-}
-
-#nav #beforeLogin {
-	height: 100%;
-	display: flex;
+	justify-content: center;
 	align-items: center;
-}
-
-#nav #beforeLogin * {
-}
-
-#nav #beforeLogin #loginForm {
-	height: 100%;
-}
-
-#nav #beforeLogin #loginForm * {
-	margin-right: 5px;
-}
-
-#nav #beforeLogin #loginForm input {
-	height: 80%;
-	width: 100px;
-	border: none;
-	font-size: 14px;
-	/* border-right: solid 1px black; */
-}
-
-#nav #beforeLogin #loginForm button {
-	height: 100%;
-	width: 100px;
-	border: none;
-	font-size: 14px;
-	background: none;
-	color: #2f3640;
-}
-
-#nav #afterLogin {
-	display: flex;
-	align-items: center;
-}
-
-#nav #afterLogin button {
-	width: 125px;
-	border: none;
-	border-top: solid 1px #2f3640;
-	font-size: 20px;
-	background: none;
-	color: #2f3640;
-	margin-right: 50px;
-	text-align: left;
-}
-
-#nav #afterLogin button:hover {
-	font-weight: bold;
+	height: 100px;
+	border-bottom: solid 1px #eee;
 }

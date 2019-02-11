@@ -1,12 +1,12 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// import { library } from '@fortawesome/fontawesome-svg-core';
-// import { faBold, faImage, faUndo, faRedo, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Nav from './nav/Nav';
-import Write from './write/Write';
-import DevTools from './DevTools';
 import CardList from './cardList/CardList';
+import CardDetail from './cardDetail/CardDetail';
+import WriteForm from './writeForm/WriteForm';
+import DevTools from './DevTools';
+import * as cardListAction from '../modules/cardList';
 import './app.css';
 
 // library.add(faBold, faImage, faUndo, faRedo, faTimes);
@@ -16,15 +16,33 @@ class App extends React.Component {
 		super();
 	}
 
+	onClickCardDetailBackground = () => {
+		const { CardListAction, isCardDetailActive } = this.props;
+		if (isCardDetailActive) {
+			CardListAction.setCardDetail(null);
+			CardListAction.setIsCardDetailActive(false);
+		}
+	};
+
 	render() {
-		const { curPage } = this.props;
+		const { isCardDetailActive, curPage } = this.props;
 		return (
 			<div id="app">
 				<Nav />
-				{/* <CardList /> */}
-				{curPage === 'cardList' ? <CardList /> : null}
-				{curPage === 'myPage' ? null : null}
-				{curPage === 'write' ? <Write /> : null}
+				{curPage === 'cardList' ? (
+					<div id="section">
+						<CardList />
+						{isCardDetailActive ? (
+							<div id="card-detail-background" onClick={this.onClickCardDetailBackground} />
+						) : null}
+						{isCardDetailActive ? <CardDetail /> : null}
+					</div>
+				) : null}
+				{curPage === 'write' ? (
+					<div id="section">
+						<WriteForm />
+					</div>
+				) : null}
 			</div>
 		);
 	}
@@ -32,7 +50,10 @@ class App extends React.Component {
 
 export default connect(
 	(state) => ({
+		isCardDetailActive: state.cardList.isCardDetailActive,
 		curPage: state.user.curPage
 	}),
-	(dispatch) => ({})
+	(dispatch) => ({
+		CardListAction: bindActionCreators(cardListAction, dispatch)
+	})
 )(App);

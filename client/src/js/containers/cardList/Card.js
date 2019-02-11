@@ -3,63 +3,60 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import * as cardListAction from '../../modules/cardList';
+import './card.css';
 
-class ConnectedCard extends Component {
+import img1 from './img/1.jpeg';
+import img2 from './img/2.jpeg';
+import img3 from './img/3.jpeg';
+import img4 from './img/4.jpeg';
+import img5 from './img/5.jpeg';
+import img6 from './img/6.jpeg';
+import img7 from './img/7.jpeg';
+import img8 from './img/8.jpeg';
+import img9 from './img/9.jpeg';
+
+class Card extends Component {
 	constructor() {
 		super();
 	}
-	// 	createdDate: "2018-12-17T06:54:24"
-	// modifiedDate: "2018-12-17T06:54:24"
-	// pcommentCnt: 0
-	// pcontent: "2"
-	// phashtag: "hashtags"
-	// plikeCnt: 0
-	// pno: 2
-	// pthumbnail: "hello.jpeg"
-	// ptitle: "1"
-	// puno: 1
-	// pviewCnt: 0
 
-	onClickCard = async () => {
-		const { CardListAction, info } = this.props;
-		const { pno } = info;
-		await CardListAction.loadCardDetail(pno);
-		await CardListAction.setIsCardDetailActive(true);
-		// console.log(CardListAction);
+	onClickCard = async (pno) => {
+		const { CardListAction, isCardDetailActive, info } = this.props;
+		if (!isCardDetailActive) {
+			await CardListAction.setIsCardDetailActive(true);
+			await CardListAction.setCardDetail(info);
+		}
 	};
 
 	render() {
-		const { CardListAction, info } = this.props;
-		const { ptitle, pcontent, pthumbnail, puno, pcommentCnt, pviewCnt, plikeCnt, pno } = info;
-
+		const { info, isCardDetailActive } = this.props;
+		const { ptitle, modifiedDate, pthumbnail, pno, uname, uemail } = info;
+		const curDate = new Date(modifiedDate);
 		return (
-			<div className="card" onClick={this.onClickCard}>
+			<div className="card" onClick={() => this.onClickCard(pno)}>
 				<img className="thumbnail" alt="" src={pthumbnail} />
-				<h1 className="title">{`제목: ${ptitle}`}</h1>
-				<p className="view-cnt">{`조회수: ${pviewCnt}`}</p>
-				<p type="button" className="save">
-					{'저장하기'}
-				</p>
-				<p type="button" className="write">
-					{`작성자: ${puno}`}
-				</p>
-				<p type="button" className="follow">
-					{'팔로우 하기'}
-				</p>
-				<p type="button" className="like-cnt">
-					{`좋아요 ${plikeCnt}`}
-				</p>
-				<p type="button" className="comment-cnt">
-					{`댓글수: ${pcommentCnt}`}
-				</p>
+				<div className="title">{ptitle}</div>
+				<div className="writer-and-date">
+					<div className="writer">{uname}</div>
+					<div className="date">
+						{`${curDate.getFullYear()}.${curDate.getMonth() + 1}.${curDate.getDate()}`}
+					</div>
+				</div>
+
+				{/* <div className="comment">{pcommentCnt}</div> */}
+
+				{/* <div className="date">{`${curDate.getFullYear()}.${curDate.getMonth()}.${curDate.getDate()}`}</div> */}
+				{/* <div className=""></div> */}
 			</div>
 		);
 	}
 }
 
 export default connect(
-	(state) => ({}),
+	(state) => ({
+		isCardDetailActive: state.cardList.isCardDetailActive
+	}),
 	(dispatch) => ({
 		CardListAction: bindActionCreators(cardListAction, dispatch)
 	})
-)(ConnectedCard);
+)(Card);

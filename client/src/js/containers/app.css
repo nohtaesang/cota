@@ -1,6 +1,44 @@
 body {
 	margin: 0;
+	font-size: 12px;
 }
 #app {
 	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#section {
+	display: flex;
+	justify-content: center;
+}
+
+#card-detail-background {
+	position: fixed;
+	background: black;
+	opacity: 0.5;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	cursor: pointer;
+	animation-name: toDarkness;
+	animation-duration: 0.2s;
+}
+
+@keyframes toDarkness {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 0.5;
+	}
+}
+
+input {
+	-webkit-appearance: none;
+	outline: none;
+	border: none;
 }
