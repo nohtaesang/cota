@@ -11,7 +11,7 @@ UI 를 맡은 친구가 도중에 취업을 하게 되어 결국 디자인은 �
 Front-end: react, redux, redux-thunk, redux-action, redux-pender, axios, sass
 Back-end: java, mariaDB, springboot, gradle, h2, jpa, mybatis
 ```
-### [back-end github link](https://github.com/seonghun127/cota)
+[Back-end github link: ](https://github.com/seonghun127/cota)
 
 ## Screenshots
 1. 메인 화면이다.<br>
