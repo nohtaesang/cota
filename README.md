@@ -10,8 +10,8 @@ UI 를 맡은 친구가 도중에 취업을 하게 되어 결국 디자인은 �
 ```
 Front-end: react, redux, redux-thunk, redux-action, redux-pender, axios, sass
 Back-end: java, mariaDB, springboot, gradle, h2, jpa, mybatis
-[back-end github link](https://github.com/seonghun127/cota)
 ```
+[back-end github link](https://github.com/seonghun127/cota)
 
 ## Screenshots
 1. 메인 화면이다.<br>
@@ -23,36 +23,34 @@ Back-end: java, mariaDB, springboot, gradle, h2, jpa, mybatis
 제목과 내용을 입력할 수 있다.<br>
 블로그에서 글을 작성하는 것과 같이 내용에 여러가지 효과를 줄 수 있다.
 <img width="1101" alt="2019-02-22 3 47 16" src="https://user-images.githubusercontent.com/31440203/53225710-402db680-36bc-11e9-975e-e02bca20584d.png">
+<img width="1102" alt="2019-02-22 3 49 15" src="https://user-images.githubusercontent.com/31440203/53225711-402db680-36bc-11e9-8cce-cde33e583453.png">
 <br>
 
 3. 화면에 표시될 썸네일을 선택할 수 있다.<br>
 내용에 업로드한 이미지 중에 썸네일을 선택할 수 있다.
-<img width="1102" alt="2019-02-22 3 49 15" src="https://user-images.githubusercontent.com/31440203/53225711-402db680-36bc-11e9-8cce-cde33e583453.png">
-<br>
-
-4. 글을 작성하면 메인으로 돌아온다.<br>
-그 후 작성한 글을 띄워준다.
 <img width="1101" alt="2019-02-22 3 49 32" src="https://user-images.githubusercontent.com/31440203/53225713-402db680-36bc-11e9-8bb4-5effc3b9ae7c.png">
 <br>
 
-5. 제목 아래에 있는 수정 버튼을 눌러 수정할 수 있다.
+
+4. 글을 작성하면 메인으로 돌아온다.<br>
+그 후 작성한 글을 띄워준다.
 <img width="1099" alt="2019-02-22 3 49 55" src="https://user-images.githubusercontent.com/31440203/53225715-402db680-36bc-11e9-923d-798ff78e3956.png">
 <br>
 
-6. 제목 아래에 있는 삭제 버튼을 누르면 삭제를 할 수 있다.
+
+5. 제목 아래에 있는 수정 버튼을 눌러 수정할 수 있다.
 <img width="1098" alt="2019-02-22 3 50 08" src="https://user-images.githubusercontent.com/31440203/53225716-40c64d00-36bc-11e9-884b-8988255f3066.png">
 <br>
+
+
+6. 제목 아래에 있는 삭제 버튼을 누르면 삭제를 할 수 있다.
+
+<img width="1098" alt="2019-02-22 3 50 20" src="https://user-images.githubusercontent.com/31440203/53225717-40c64d00-36bc-11e9-821f-249656688441.png">
 
 카드 더 불러오기
 <img width="1100" alt="2019-02-22 3 52 20" src="https://user-images.githubusercontent.com/31440203/53225718-40c64d00-36bc-11e9-8022-4bb2c726035f.png">
 더 불러온 모습
-<img width="1098" alt="2019-02-22 3 50 20" src="https://user-images.githubusercontent.com/31440203/53225717-40c64d00-36bc-11e9-821f-249656688441.png">
 
-댓글 작성
-<img width="1098" alt="2019-02-22 3 50 20" src="https://user-images.githubusercontent.com/31440203/53225717-40c64d00-36bc-11e9-821f-249656688441.png">
-
-댓글 수정
-<img width="1098" alt="2019-02-22 3 50 20" src="https://user-images.githubusercontent.com/31440203/53225717-40c64d00-36bc-11e9-821f-249656688441.png">
 
 타인의 글과 댓글은 수정할 수 
 <img width="1101" alt="2019-02-22 3 52 07" src="https://user-images.githubusercontent.com/31440203/53225719-40c64d00-36bc-11e9-96e9-e73beb67484a.png">
