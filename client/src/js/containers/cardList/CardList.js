@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Card from './Card';
 import * as cardListAction from '../../modules/cardList';
 import write, * as writeAction from '../../modules/write';
-import './cardList.css';
+import '../../../scss/style.css';
 
 class CardList extends Component {
 	constructor() {
@@ -27,10 +27,11 @@ class CardList extends Component {
 
 		return (
 			<div id="card-list">
+				<div id="sub-title">Recent Posts</div>
 				{cardList.map((card, i) => <Card key={i} info={card} imgIndex={i} />)}
 				{cardList.length - 10 === numberOfCard ? (
 					<button type="button" id="loadMoreBtn" onClick={this.onClickLoadMore}>
-						{'loadMore'}
+						{'Load more cards'}
 					</button>
 				) : null}
 			</div>

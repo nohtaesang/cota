@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import './writeForm.css';
+import '../../../scss/style.css';
 import * as writeAction from '../../modules/write';
 import * as userAction from '../../modules/user';
 import * as cardListAction from '../../modules/cardList';
@@ -138,10 +138,9 @@ class ConnectedWrite extends Component {
 		const { contentTitle, content, imageList, thumbnailIndex } = this.state;
 		const { WriteAction, CardListAction, UserAction, uno } = this.props;
 		if (contentTitle === '' || content === '' || imageList.length === 0) return;
-		// TODO: 1을 uno로 바꾸기
 
 		let info = null;
-		await WriteAction.saveContent(contentTitle, content, 1, imageList[thumbnailIndex]).then((res) => {
+		await WriteAction.saveContent(contentTitle, content, uno, imageList[thumbnailIndex]).then((res) => {
 			info = res.data[0];
 		});
 		await UserAction.setCurPage('cardList');
@@ -156,11 +155,10 @@ class ConnectedWrite extends Component {
 
 		let info = null;
 
-		// TODO: 1을 uno로 바꾸기
 		await WriteAction.editContent(
 			contentTitle,
 			content,
-			1,
+			uno,
 			cardDetail.pno,
 			imageList[thumbnailIndex]
 		).then((res) => {
@@ -182,8 +180,8 @@ class ConnectedWrite extends Component {
 		const { contentTitle, content, imageList, thumbnailIndex } = this.state;
 		return cardDetail === null ? (
 			<div id="write-form">
-				<div id="title">Post</div>
-				<input id="contentTitle" value={contentTitle} onChange={this.handleChange} />
+				<div id="title">글쓰기</div>
+				<input id="contentTitle" value={contentTitle} onChange={this.handleChange} placeholder="글 제목을 입력하세요" />
 				<div id="content-form">
 					<div id="options">
 						<button type="button">
@@ -245,7 +243,7 @@ class ConnectedWrite extends Component {
 			</div>
 		) : (
 			<div id="write-form">
-				<div id="title">Edit</div>
+				<div id="title">수정하기</div>
 				<input id="contentTitle" value={contentTitle} onChange={this.handleChange} />
 				<div id="content-form">
 					<div id="options">

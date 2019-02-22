@@ -7,7 +7,8 @@ import * as cardListAction from '../../modules/cardList';
 import BeforeLogin from './BeforeLogin';
 import AfterLogin from './AfterLogin';
 
-import './nav.css';
+// import './nav.css';
+import '../../../scss/style.css';
 
 class Nav extends Component {
 	constructor() {
@@ -17,12 +18,12 @@ class Nav extends Component {
 	componentDidMount() {
 		// 임시 로그인 체크
 		const { UserAction } = this.props;
-
+		// FIXME: 임시;
 		localStorage.setItem('token', 'nohtaesang'); // 로그인
 		// localStorage.clear();
 
 		if (localStorage.getItem('token') !== null) {
-			UserAction.setUserEmail('seonghun127@gmail.com');
+			UserAction.setUserEmail('gyofeel318@gmail.com');
 		}
 	}
 
@@ -36,7 +37,7 @@ class Nav extends Component {
 		const { userEmail } = this.props;
 		return (
 			<div id="nav">
-				<button type="button" id="logoBtn" onClick={this.onClickLogoBtn}>
+				<button type="button" id="logoBtn" className="navBtn" onClick={this.onClickLogoBtn}>
 					{'COTA'}
 				</button>
 				{userEmail === null ? <BeforeLogin /> : <AfterLogin />}

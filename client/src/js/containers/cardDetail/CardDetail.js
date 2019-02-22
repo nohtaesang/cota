@@ -7,7 +7,7 @@ import * as userAction from '../../modules/user';
 import * as writeAction from '../../modules/write';
 import * as cardListAction from '../../modules/cardList';
 
-import './cardDetail.css';
+import '../../../scss/style.css';
 
 class CardDetail extends Component {
 	constructor() {
@@ -46,31 +46,39 @@ class CardDetail extends Component {
 			<div id="card-detail">
 				<div id="info">
 					<div id="title">{cardDetail.ptitle}</div>
-					<div id="date">
-						{`${new Date(cardDetail.modifiedDate).getFullYear()}.${new Date(
-							cardDetail.modifiedDate
-						).getMonth() + 1}.${new Date(cardDetail.modifiedDate).getDate()}`}
-					</div>
-					<div id="name">{cardDetail.uname}</div>
-					<div id="email">{cardDetail.uemail}</div>
-					{cardDetail.uemail === userEmail ? (
-						<div id="owner">
-							<button type="button" onClick={this.onClickEdit}>
-								{'수정'}
-							</button>
-							<button type="button" onClick={this.askRealDelete}>
-								{'삭제'}
-							</button>
+					<div id="write-info">
+						<div id="date">
+							{`${new Date(cardDetail.modifiedDate).getFullYear()}.${new Date(
+								cardDetail.modifiedDate
+							).getMonth() + 1}.${new Date(cardDetail.modifiedDate).getDate()}`}
 						</div>
-					) : null}
+						<div id="name">{`${cardDetail.uname}`}</div>
+						<div id="email">{cardDetail.uemail}</div>
+						{cardDetail.uemail === userEmail ? (
+							<div id="owner">
+								<button id="edit" type="button" onClick={this.onClickEdit}>
+									{'수정'}
+								</button>
+								<button id="delete" type="button" onClick={this.askRealDelete}>
+									{'삭제'}
+								</button>
+							</div>
+						) : null}
+					</div>
+
 					{isAskRealDelete ? (
 						<div id="isAskRealDelete" onClick={this.onClickCancel}>
-							<button type="button" onClick={this.onClickDeleteCard}>
-								{'삭제'}
-							</button>
-							<button type="button" onClick={this.onClickCancel}>
-								{'취소'}
-							</button>
+							<div id="panel">
+								<div id="question">정말 삭제 하시겠습니까?</div>
+								<div id="buttons">
+									<button type="button" id="delete" onClick={this.onClickDeleteCard}>
+										{'삭제'}
+									</button>
+									<button type="button" id="cancel" onClick={this.onClickCancel}>
+										{'취소'}
+									</button>
+								</div>
+							</div>
 						</div>
 					) : null}
 				</div>

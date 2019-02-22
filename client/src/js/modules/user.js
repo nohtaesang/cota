@@ -29,7 +29,7 @@ export const setCurPage = (newPage) => ({
 
 export const initialState = {
 	token: null,
-	uno: 1,
+	uno: 3, //  FIXME:임시
 	userEmail: null,
 	userName: null,
 	curPage: 'cardList'

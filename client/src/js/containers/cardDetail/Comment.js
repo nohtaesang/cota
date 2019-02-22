@@ -6,7 +6,7 @@ import * as userAction from '../../modules/user';
 import * as writeAction from '../../modules/write';
 import * as cardListAction from '../../modules/cardList';
 import * as commentAction from '../../modules/comment';
-import './cardDetail.css';
+import '../../../scss/style.css';
 
 class Comment extends Component {
 	constructor() {
@@ -40,12 +40,12 @@ class Comment extends Component {
 
 	onClickCommentWrite = async () => {
 		const { comment } = this.state;
-		const { CommentAction, cardDetail } = this.props;
+		const { CommentAction, cardDetail, uno } = this.props;
 
 		if (comment === '') return;
 		const ccontent = comment;
 		const cpno = cardDetail.pno;
-		const cuno = 1; // FIXME: 변경해야됨
+		const cuno = uno;
 
 		await CommentAction.saveComment(ccontent, cpno, cuno);
 		await this.setState({
@@ -66,14 +66,15 @@ class Comment extends Component {
 
 	onClickEditDone = async (e) => {
 		const { editComment } = this.state;
-		const { CommentAction, commentList, cardDetail } = this.props;
+		const { CommentAction, commentList, cardDetail, uno } = this.props;
 		const curComment = commentList[parseInt(e.target.name, 10)];
 		const { cno } = curComment;
+		const cuno = uno;
 		this.setState({
 			isLoading: true
 		});
 
-		await CommentAction.updateComment(cno, editComment, cardDetail.pno, 1); // FIXME: 1을 uno
+		await CommentAction.updateComment(cno, editComment, cardDetail.pno, cuno);
 
 		const commentIndex = commentList.findIndex((a) => a.cno === cno);
 		commentList[commentIndex].ccontent = editComment;
@@ -108,12 +109,47 @@ class Comment extends Component {
 		const { cardDetail, userEmail, commentList, numberOfComment } = this.props;
 
 		return (
-			<div id="comment">
+			<div id="comments">
 				{commentList ? (
 					commentList.map((a, i) => (
-						<div key={i}>
-							<div>{a.uname}</div>
-							<div>{a.uemail}</div>
+						<div className="comment" key={i}>
+							<div className="writer-info">
+								<div className="name">{a.uname}</div>
+								<div className="email">{a.uemail}</div>
+								{userEmail === a.uemail ? (
+									<div className="ownerOption">
+										{editNo === a.cno ? (
+											<button
+												className="edit-done"
+												type="button"
+												name={i}
+												onClick={this.onClickEditDone}
+											>
+												{'수정 완료'}
+											</button>
+										) : (
+											<button
+												className="edit"
+												type="button"
+												name={i}
+												onClick={this.onClickEditComment}
+											>
+												{'수정'}
+											</button>
+										)}
+
+										<button
+											className="delete"
+											type="button"
+											name={a.cno}
+											onClick={this.onClickDeleteComment}
+										>
+											{'삭제'}
+										</button>
+									</div>
+								) : null}
+							</div>
+
 							{editNo === a.cno ? (
 								<input
 									type="text"
@@ -122,31 +158,13 @@ class Comment extends Component {
 									value={editComment}
 								/>
 							) : (
-								<div>{a.ccontent}</div>
+								<div className="content">{a.ccontent}</div>
 							)}
-
-							{userEmail === a.uemail ? (
-								<div className="ownerOption">
-									{editNo === a.cno ? (
-										<button type="button" name={i} onClick={this.onClickEditDone}>
-											{'수정 완료'}
-										</button>
-									) : (
-										<button type="button" name={i} onClick={this.onClickEditComment}>
-											{'수정'}
-										</button>
-									)}
-
-									<button type="button" name={a.cno} onClick={this.onClickDeleteComment}>
-										{'삭제'}
-									</button>
-								</div>
-							) : null}
 						</div>
 					))
 				) : null}
 				{commentList && commentList.length - 10 === numberOfComment ? (
-					<button type="button" onClick={this.onClickLoadMoreComment}>
+					<button id="load-more-comments" type="button" onClick={this.onClickLoadMoreComment}>
 						{'댓글 더 불러오기'}
 					</button>
 				) : null}
@@ -166,7 +184,8 @@ export default connect(
 		cardDetail: state.cardList.cardDetail,
 		userEmail: state.user.userEmail,
 		commentList: state.comment.commentList,
-		numberOfComment: state.comment.numberOfComment
+		numberOfComment: state.comment.numberOfComment,
+		uno: state.user.uno
 	}),
 	(dispatch) => ({
 		UserAction: bindActionCreators(userAction, dispatch),

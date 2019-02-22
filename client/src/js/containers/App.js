@@ -7,7 +7,8 @@ import CardDetail from './cardDetail/CardDetail';
 import WriteForm from './writeForm/WriteForm';
 import DevTools from './DevTools';
 import * as cardListAction from '../modules/cardList';
-import './app.css';
+// import './app.css';
+import '../../scss/style.css';
 
 // library.add(faBold, faImage, faUndo, faRedo, faTimes);
 
@@ -29,6 +30,7 @@ class App extends React.Component {
 		return (
 			<div id="app">
 				<Nav />
+
 				{curPage === 'cardList' ? (
 					<div id="section">
 						<CardList />
