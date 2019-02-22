@@ -3,7 +3,7 @@
 사진과 글로 게시글을 작성하고 유저들 간의 댓글을 작성할 수 있는 블로그 서비스
 
 ## Motivation
-Spring을 공부하는 친구(https://github.com/seonghun127)와 UI design을 하는 친구(https://github.com/gyofeel318)와 같이 스터디를 하던 중에 하나의 서비스를 같이 만들어보면 어떨까 해서 시작한 프로젝트다.<br>
+[Spring을 공부하는 친구](https://github.com/seonghun127)와 [UI/UX 를 공부하는 친구](https://github.com/gyofeel318)와 같이 스터디를 하던 중에 하나의 서비스를 같이 만들어보면 어떨까 해서 시작한 프로젝트다.<br>
 UI 를 맡은 친구가 도중에 취업을 하게 되어 결국 디자인은 별로지만, 프로젝트는 완성하였다.
 
 ## Tech/framework used
