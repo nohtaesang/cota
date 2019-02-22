@@ -1,0 +1,122 @@
+#card-detail {
+	position: fixed;
+	overflow-y: scroll;
+	display: block;
+	width: 800px;
+	background: white;
+	justify-content: center;
+	padding: 21px;
+	top: 50px;
+	bottom: 50px;
+}
+
+/* info */
+#card-detail #info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 40px;
+	padding-bottom: 20px;
+}
+
+#card-detail #info #title {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#card-detail #info #date {
+	margin-left: auto;
+}
+#card-detail #info #name {
+	margin-left: auto;
+}
+#card-detail #info #email {
+	margin-left: auto;
+}
+
+#card-detail #info #owner {
+	margin-left: auto;
+}
+
+#card-detail #info #isAskRealDelete {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+#card-detail #info #isAskRealDelete button {
+	width: 100px;
+	height: 35px;
+	margin: 10px;
+}
+
+/* content */
+#card-detail #content {
+	/* width: 958px; */
+	border-bottom: solid 1px #eee;
+	padding-bottom: 40px;
+}
+
+#card-detail #content img {
+	max-width: 600px;
+}
+
+/* comment */
+#card-detail #comment {
+	margin-top: 20px;
+	margin-bottom: 40px;
+	width: 100%;
+}
+#card-detail #comment #commentWriteForm {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	border: solid 1px #eee;
+	box-sizing: border-box;
+	height: 40px;
+	border-radius: 6px;
+}
+#card-detail #comment #commentWriteForm input {
+	width: 80%;
+	border: none;
+
+	border-radius: 6px 0 0 6px;
+	padding-left: 6px;
+}
+#card-detail #comment #commentWriteForm button {
+	width: 20%;
+	border: none;
+	border-left: solid 1px #eee;
+
+	border-radius: 0 6px 6px 0;
+}
+
+#card-detail #comment #commentWriteForm button:hover {
+	background: coral;
+	color: white;
+	cursor: pointer;
+}
+
+#card-detail #comment #commentList {
+	width: 100%;
+	/* min-height: 20px; */
+	border: solid 1px #eee;
+	margin-top: 10px;
+}
+
+#card-detail #comment #commentList .comment {
+	width: 100%;
+}
+
+#card-detail #comment #commentList .comment .writer {
+}
+
+#card-detail #comment #commentList .comment .text {
+}

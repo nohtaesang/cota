@@ -1,0 +1,393 @@
+body {
+  margin: 0;
+  font-size: 14px;
+  box-sizing: border-box; }
+  body #root #app {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #eee; }
+    body #root #app #nav {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      background: #3a4553;
+      margin-bottom: 50px; }
+      body #root #app #nav .navBtn {
+        border: none;
+        margin: none;
+        height: 50px;
+        width: 90px;
+        color: #333;
+        cursor: pointer;
+        outline: none;
+        background: none;
+        color: #fdf0dc; }
+        body #root #app #nav .navBtn:hover {
+          border: none;
+          color: #3a4553;
+          background: #fdf0dc;
+          opacity: 1; }
+        body #root #app #nav .navBtn:focus {
+          border: none; }
+        body #root #app #nav .navBtn:active {
+          border: none; }
+      body #root #app #nav #logoBtn {
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: none; }
+      body #root #app #nav #afterLogin #writeBtn {
+        font-size: 13px; }
+      body #root #app #nav #afterLogin #logoutBtn {
+        font-size: 13px; }
+    body #root #app #section {
+      display: flex;
+      justify-content: center; }
+      body #root #app #section #card-list {
+        display: flex;
+        flex-wrap: wrap;
+        width: 880px;
+        padding: 40px;
+        background: white;
+        margin-bottom: 40px; }
+        body #root #app #section #card-list #sub-title {
+          box-sizing: border-box;
+          width: 420px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 60px;
+          margin: 10px;
+          background: #ff736d;
+          color: white; }
+        body #root #app #section #card-list .card {
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          width: 200px;
+          background: white;
+          border-radius: 6px 6px 3px 3px;
+          box-shadow: 0 1px 2px rgba(11, 11, 11, 0.2);
+          margin: 10px;
+          cursor: pointer; }
+          body #root #app #section #card-list .card:hover {
+            box-shadow: 0 1px 2px rgba(11, 11, 11, 0.2); }
+          body #root #app #section #card-list .card .thumbnail {
+            width: 200px;
+            height: 160px;
+            border-radius: 6px 6px 0 0; }
+          body #root #app #section #card-list .card .title {
+            font-weight: bold;
+            padding: 10px 0px 5px 10px;
+            color: #3a4553; }
+          body #root #app #section #card-list .card .writer-and-date {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+            padding: 5px 10px 10px 10px; }
+            body #root #app #section #card-list .card .writer-and-date .writer {
+              font-weight: bold;
+              color: #3a4553;
+              border-radius: 6px;
+              background: #fdf0dc;
+              color: #3a4553; }
+            body #root #app #section #card-list .card .writer-and-date .date {
+              font-weight: bold;
+              color: #3a4553;
+              margin-left: 5px;
+              font-size: 10px; }
+        body #root #app #section #card-list #loadMoreBtn {
+          box-sizing: border-box;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 200px;
+          height: 220px;
+          background: #00af96;
+          color: white;
+          border-radius: 6px 6px 3px 3px;
+          margin: 10px;
+          cursor: pointer;
+          font-size: 16px; }
+      body #root #app #section #card-detail-background {
+        position: fixed;
+        background: black;
+        opacity: 0.5;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        cursor: pointer;
+        animation-name: toDarkness;
+        animation-duration: 0.2s; }
+      body #root #app #section #card-detail {
+        position: fixed;
+        overflow-y: scroll;
+        display: block;
+        width: 800px;
+        background: white;
+        justify-content: center;
+        top: 50px;
+        bottom: 50px; }
+        body #root #app #section #card-detail #info {
+          display: flex;
+          flex-direction: column;
+          padding: 20px 10px 10px 10px;
+          border-bottom: 1px solid #eee; }
+          body #root #app #section #card-detail #info #title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3a4553; }
+          body #root #app #section #card-detail #info #write-info {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline; }
+            body #root #app #section #card-detail #info #write-info #date {
+              color: #3a4553;
+              opacity: 0.5; }
+            body #root #app #section #card-detail #info #write-info #name {
+              margin-left: 5px;
+              color: #3a4553;
+              opacity: 0.5; }
+            body #root #app #section #card-detail #info #write-info #email {
+              margin-left: 5px;
+              color: #3a4553;
+              opacity: 0.5; }
+            body #root #app #section #card-detail #info #write-info #owner #delete {
+              color: #ff736d; }
+          body #root #app #section #card-detail #info #isAskRealDelete {
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.5);
+            animation-name: toDarkness;
+            animation-duration: 0.2s; }
+            body #root #app #section #card-detail #info #isAskRealDelete #panel {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 350px;
+              height: 80px;
+              background: white;
+              border-radius: 5px; }
+              body #root #app #section #card-detail #info #isAskRealDelete #panel #question {
+                font-size: 16px;
+                font-weight: bold; }
+              body #root #app #section #card-detail #info #isAskRealDelete #panel #buttons button {
+                font-size: 16px;
+                margin: 10px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                text-decoration: underline; }
+                body #root #app #section #card-detail #info #isAskRealDelete #panel #buttons button:hover {
+                  opacity: 0.5; }
+              body #root #app #section #card-detail #info #isAskRealDelete #panel #buttons #delete {
+                color: #ff736d; }
+        body #root #app #section #card-detail #content {
+          padding: 20px 20px 20px 20px;
+          border-bottom: 1px solid #eee;
+          font-size: 14px; }
+          body #root #app #section #card-detail #content img {
+            max-width: 600px; }
+        body #root #app #section #card-detail #comments {
+          padding: 20px; }
+          body #root #app #section #card-detail #comments .comment {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 10px; }
+            body #root #app #section #card-detail #comments .comment .writer-info {
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              margin-bottom: 5px; }
+              body #root #app #section #card-detail #comments .comment .writer-info .name {
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center; }
+              body #root #app #section #card-detail #comments .comment .writer-info .email {
+                margin-left: 5px; }
+              body #root #app #section #card-detail #comments .comment .writer-info .ownerOption button {
+                margin-left: 5px;
+                outline: none;
+                border: none;
+                cursor: pointer;
+                text-decoration: underline; }
+                body #root #app #section #card-detail #comments .comment .writer-info .ownerOption button:hover {
+                  opacity: 0.5; }
+              body #root #app #section #card-detail #comments .comment .writer-info .ownerOption .delete {
+                color: #ff736d; }
+            body #root #app #section #card-detail #comments .comment .content {
+              width: 100%; }
+            body #root #app #section #card-detail #comments .comment input {
+              width: 100%;
+              padding: 0;
+              font-size: 14px;
+              border: solid 1px #eee;
+              padding: 10px;
+              border-radius: 5px; }
+          body #root #app #section #card-detail #comments #load-more-comments {
+            width: 100%;
+            height: 40px;
+            font-size: 14px;
+            margin-bottom: 20px; }
+          body #root #app #section #card-detail #comments #commentWriteForm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            border: 1px solid #eee;
+            padding-left: 10px; }
+            body #root #app #section #card-detail #comments #commentWriteForm input {
+              box-sizing: border-box;
+              height: 100%;
+              width: 80%;
+              padding: 0;
+              border-radius: 5px 0px 0px 5px; }
+            body #root #app #section #card-detail #comments #commentWriteForm button {
+              box-sizing: border-box;
+              width: 20%;
+              height: 100%;
+              outline: none;
+              border: none;
+              padding: 0;
+              border-radius: 0px 5px 5px 0px;
+              cursor: pointer;
+              background: #3a4553;
+              color: beige;
+              font-size: 16px;
+              border-left: solid 1px #eee; }
+              body #root #app #section #card-detail #comments #commentWriteForm button:hover {
+                opacity: 0.5; }
+      body #root #app #section #write-form {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        width: 800px;
+        background: white;
+        padding: 20px;
+        margin-bottom: 40px; }
+        body #root #app #section #write-form #title {
+          display: flex;
+          align-items: center;
+          font-size: 24px;
+          width: 100%;
+          height: 40px; }
+        body #root #app #section #write-form #contentTitle {
+          width: 100%;
+          height: 28px;
+          margin: 6px 0px 6px 0px;
+          border: solid 1px #eee;
+          box-sizing: border-box;
+          padding: 0 10px 0 10px; }
+        body #root #app #section #write-form #content-form {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          border: solid 1px #eee;
+          box-sizing: border-box;
+          margin-bottom: 5px; }
+          body #root #app #section #write-form #content-form #options {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            height: 28px;
+            border-bottom: 1px solid #eee;
+            box-sizing: border-box; }
+            body #root #app #section #write-form #content-form #options button {
+              display: flex;
+              position: relative;
+              justify-content: center;
+              align-items: center;
+              width: 28px;
+              height: 100%;
+              outline: none;
+              border: none;
+              box-sizing: border-box;
+              border-right: 1px solid #eee; }
+              body #root #app #section #write-form #content-form #options button:hover {
+                box-shadow: 0 1px 2px rgba(25, 25, 25, 0.5);
+                border: 1px solid #00af96; }
+            body #root #app #section #write-form #content-form #options img {
+              width: 14px; }
+            body #root #app #section #write-form #content-form #options #insertImage {
+              position: absolute; }
+          body #root #app #section #write-form #content-form #textField {
+            width: 100%;
+            height: 600px;
+            margin: 6px 0px 6px 0px;
+            outline: none;
+            overflow: auto;
+            padding: 5px 10px 5px 10px; }
+            body #root #app #section #write-form #content-form #textField img {
+              max-width: 600px; }
+        body #root #app #section #write-form #image-list {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          height: 170px;
+          border: solid 1px #eee;
+          overflow: auto;
+          box-sizing: border-box; }
+          body #root #app #section #write-form #image-list .image {
+            width: 200px;
+            height: 160px; }
+          body #root #app #section #write-form #image-list .image.selected {
+            border: solid 2px #ff736d; }
+        body #root #app #section #write-form #submits {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 30px;
+          margin-bottom: 100px; }
+          body #root #app #section #write-form #submits button {
+            font-size: 20px;
+            margin: 0 40px 0 40px;
+            background: white; }
+          body #root #app #section #write-form #submits #submit:hover {
+            color: #00af96; }
+          body #root #app #section #write-form #submits #cancel {
+            color: #ff736d; }
+  body input {
+    -webkit-appearance: none;
+    outline: none;
+    border: none; }
+
+@keyframes toDarkness {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 0.5; } }
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline; }
+  button:hover {
+    opacity: 0.5; }
+
+input[type="file"] {
+  width: 28px;
+  height: 28px;
+  opacity: 0; }
