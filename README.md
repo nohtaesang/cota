@@ -46,9 +46,8 @@ Back-end: java, mariaDB, springboot, gradle, h2, jpa, mybatis
 <br>
 
 7. 카드 목록을 더 불러올 수 있다.
-<img width="1100" alt="2019-02-22 3 52 20" src="https://user-images.githubusercontent.com/31440203/53225718-40c64d00-36bc-11e9-8022-4bb2c726035f.png">
-
 <img width="1101" alt="2019-02-22 3 52 07" src="https://user-images.githubusercontent.com/31440203/53225719-40c64d00-36bc-11e9-96e9-e73beb67484a.png">
+<img width="1100" alt="2019-02-22 3 52 20" src="https://user-images.githubusercontent.com/31440203/53225718-40c64d00-36bc-11e9-8022-4bb2c726035f.png">
 <br>
 
 8. 댓글을 작성할 수 있다.
